@@ -6,6 +6,7 @@
     <parameters>
         <parameter key='flex_model.elasticsearch.factory.class'>FlexModel\FlexModelElasticsearchBundle\DependencyInjection\FlexModelElasticsearchFactory</parameter>
         <parameter key='flex_model.elasticsearch.class'>Elasticsearch\Client</parameter>
+        <parameter key='flex_model.elasticsearch.indexer.class'>FlexModel\FlexModelElasticsearchBundle\Elasticsearch\Indexer</parameter>
     </parameters>
 
     <services>
@@ -15,6 +16,12 @@
             <factory service='flex_model.elasticsearch.factory' method='createElasticsearchClient'/>
 
             <argument>%flex_model.elasticsearch.hosts%</argument>
+        </service>
+
+        <service id='flex_model.elasticsearch.indexer' class='%flex_model.elasticsearch.indexer.class%'>
+            <argument type='service' id='flex_model.elasticsearch.client'/>
+            <argument type='service' id='flexmodel'/>
+            <argument>%flex_model.elasticsearch.index%</argument>
         </service>
     </services>
 </container>
