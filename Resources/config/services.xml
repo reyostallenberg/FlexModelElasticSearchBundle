@@ -1,0 +1,20 @@
+<?xml version='1.0' ?>
+<container xmlns='http://symfony.com/schema/dic/services'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd'>
+
+    <parameters>
+        <parameter key='flex_model.elasticsearch.factory.class'>FlexModel\FlexModelElasticsearchBundle\DependencyInjection\FlexModelElasticsearchFactory</parameter>
+        <parameter key='flex_model.elasticsearch.class'>Elasticsearch\Client</parameter>
+    </parameters>
+
+    <services>
+        <service id='flex_model.elasticsearch.factory' class='%flex_model.elasticsearch.factory.class%' public='false'/>
+
+        <service id='flex_model.elasticsearch.client' class='%flex_model.elasticsearch.class%'>
+            <factory service='flex_model.elasticsearch.factory' method='createElasticsearchClient'/>
+
+            <argument>%flex_model.elasticsearch.hosts%</argument>
+        </service>
+    </services>
+</container>
