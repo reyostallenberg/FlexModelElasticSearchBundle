@@ -1,0 +1,26 @@
+{
+    "name": "flexmodel/flexmodel-elasticsearch-bundle",
+    "description": "FlexModel-based Elasticsearch integration for Symfony 3+.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Niels Nijens",
+            "email": "niels@connectholland.nl"
+        }
+    ],
+    "require": {
+        "php": "^5.5 | ^7.0",
+        "doctrine/orm": "^2.5",
+        "elasticsearch/elasticsearch": "^2.1",
+        "flexmodel/flexmodel-bundle": "dev-master",
+        "ongr/elasticsearch-dsl": "^2.0",
+        "symfony/console": "^3.0",
+        "symfony/framework-bundle": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "FlexModel\\FlexModelElasticsearchBundle\\": ""
+        }
+    }
+}
