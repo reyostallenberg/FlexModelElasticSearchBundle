@@ -16,7 +16,8 @@
         "flexmodel/flexmodel-bundle": "dev-master",
         "ongr/elasticsearch-dsl": "^2.0",
         "symfony/console": "^3.0",
-        "symfony/framework-bundle": "^3.0"
+        "symfony/framework-bundle": "^3.0",
+        "symfony/serializer": "^3.0"
     },
     "autoload": {
         "psr-4": {
