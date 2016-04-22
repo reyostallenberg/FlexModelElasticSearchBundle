@@ -8,6 +8,7 @@
         <parameter key='flex_model.elasticsearch.class'>Elasticsearch\Client</parameter>
         <parameter key='flex_model.elasticsearch.indexer.class'>FlexModel\FlexModelElasticsearchBundle\Elasticsearch\Indexer</parameter>
         <parameter key='flex_model.elasticsearch.filtered_searcher.class'>FlexModel\FlexModelElasticsearchBundle\Elasticsearch\FilteredSearcher</parameter>
+        <parameter key='flex_model.elasticsearch.aggregation_result_parser.class'>FlexModel\FlexModelElasticsearchBundle\Elasticsearch\AggregationResultParser</parameter>
         <parameter key='flex_model.elasticsearch.filter.form.type.class'>FlexModel\FlexModelElasticsearchBundle\Form\Type\FilterFormType</parameter>
     </parameters>
 
@@ -30,6 +31,10 @@
             <argument type='service' id='flex_model.elasticsearch.client'/>
             <argument type='service' id='flexmodel'/>
             <argument>%flex_model.elasticsearch.index%</argument>
+        </service>
+
+        <service id='flex_model.elasticsearch.aggregation_result_parser' class='%flex_model.elasticsearch.aggregation_result_parser.class%'>
+            <argument type='service' id='flexmodel'/>
         </service>
 
         <service id='flex_model.elasticsearch.filter.form.type' class='%flex_model.elasticsearch.filter.form.type.class%'>
