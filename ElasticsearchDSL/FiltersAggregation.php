@@ -14,6 +14,11 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 class FiltersAggregation extends BaseFiltersAggregation
 {
     /**
+     * @var BuilderInterface[]
+     */
+    protected $filters = [];
+
+    /**
      * @var bool
      */
     protected $anonymous = false;
@@ -32,5 +37,13 @@ class FiltersAggregation extends BaseFiltersAggregation
         }
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getArray()
+    {
+        return $this->filters;
     }
 }
