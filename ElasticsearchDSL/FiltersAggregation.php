@@ -14,6 +14,11 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 class FiltersAggregation extends BaseFiltersAggregation
 {
     /**
+     * @var bool
+     */
+    protected $anonymous = false;
+
+    /**
      * {@inheritdoc}
      */
     public function addFilter(BuilderInterface $filter, $name = '')
