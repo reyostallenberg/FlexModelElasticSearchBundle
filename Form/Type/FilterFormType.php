@@ -55,13 +55,21 @@ class FilterFormType extends AbstractType
                     );
 
                     if (isset($options['aggregation_results'][$formFieldConfiguration['name']])) {
-                        $fieldOptions['choices'] = array();
+                        $fieldOptions['choices'] = $options['aggregation_results'][$formFieldConfiguration['name']];
+                        $fieldOptions['choice_label'] = function($aggregationResult) {
+                            return $aggregationResult->getLabel();
+                        };
+                        $fieldOptions['choice_value'] = function($aggregationResult) {
+                            return $aggregationResult->getValue();
+                        };
+                        $fieldOptions['choice_attr'] = function($aggregationResult) {
+                            return array(
+                                'disabled' => $aggregationResult->getCount() < 1,
+                                'data-count' => $aggregationResult->getCount(),
+                            );
+                        };
                         $fieldOptions['multiple'] = true;
                         $fieldOptions['expanded'] = true;
-
-                        foreach ($options['aggregation_results'][$formFieldConfiguration['name']] as $option) {
-                            $fieldOptions['choices'][sprintf('%s (%d)', $option->getLabel(), $option->getCount())] = $option->getValue();
-                        }
                     } else {
                         $fieldType = IntegerType::class;
                     }
