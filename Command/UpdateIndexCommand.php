@@ -34,6 +34,18 @@ class UpdateIndexCommand extends ContainerAwareCommand
     {
         $io = new SymfonyStyle($input, $output);
 
+        $client = $this->getContainer()->get('flex_model.elasticsearch.client');
+        /* @var $client \Elasticsearch\Client */
+        $indexName = $this->getContainer()->getParameter('flex_model.elasticsearch.index');
+        $indexParameters = array('index' => $indexName);
+        if ($client->indices()->exists($indexParameters) === false) {
+            $client->indices()->create($indexParameters);
+
+            $io->text(sprintf('Created index "%s".', $indexName));
+        } else {
+            $io->text(sprintf('Index "%s" already exists. Continuing...', $indexName));
+        }
+
         $classMetaDataInstances = $this->getContainer()->get('doctrine')->getManager()->getMetadataFactory()->getAllMetadata();
         foreach ($classMetaDataInstances as $classMetaDataInstance) {
             if (in_array(IndexableObjectInterface::class, class_implements($classMetaDataInstance->getName()))) {
