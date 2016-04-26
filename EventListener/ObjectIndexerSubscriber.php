@@ -26,7 +26,7 @@ class ObjectIndexerSubscriber implements EventSubscriber
      *
      * @param Indexer $indexer
      */
-    public function __constuct(Indexer $indexer) {
+    public function __construct(Indexer $indexer) {
         $this->indexer = $indexer;
     }
 
