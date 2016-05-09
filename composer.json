@@ -14,7 +14,7 @@
         "doctrine/orm": "^2.5",
         "elasticsearch/elasticsearch": "^2.1",
         "flexmodel/flexmodel-bundle": "dev-master",
-        "ongr/elasticsearch-dsl": "^2.0",
+        "ongr/elasticsearch-dsl": "^2.0.1",
         "symfony/console": "^3.0",
         "symfony/framework-bundle": "^3.0",
         "symfony/serializer": "^3.0"
