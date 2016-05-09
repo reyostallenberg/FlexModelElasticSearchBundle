@@ -4,9 +4,9 @@ namespace FlexModel\FlexModelElasticsearchBundle\Elasticsearch;
 
 use Elasticsearch\Client;
 use FlexModel\FlexModel;
-use FlexModel\FlexModelElasticsearchBundle\ElasticsearchDSL\FiltersAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\FilterAggregation;
+use ONGR\ElasticsearchDSL\Aggregation\FiltersAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\GlobalAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\TermsAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\ValueCountAggregation;
