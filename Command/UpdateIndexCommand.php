@@ -36,7 +36,7 @@ class UpdateIndexCommand extends ContainerAwareCommand
 
         $client = $this->getContainer()->get('flex_model.elasticsearch.client');
         /* @var $client \Elasticsearch\Client */
-        $indexName = $this->getContainer()->getParameter('flex_model.elasticsearch.index');
+        $indexName = $this->getContainer()->getParameter('flex_model.elasticsearch.index.name');
         $indexParameters = array('index' => $indexName);
         if ($client->indices()->exists($indexParameters) === false) {
             $client->indices()->create($indexParameters);

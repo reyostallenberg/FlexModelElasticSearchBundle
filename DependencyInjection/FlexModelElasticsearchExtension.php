@@ -22,7 +22,9 @@ class FlexModelElasticsearchExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('flex_model.elasticsearch.index', strtolower($config['index']));
+        $container->setParameter('flex_model.elasticsearch.index.name', strtolower($config['index']['name']));
+        $container->setParameter('flex_model.elasticsearch.index.settings', $config['index']['settings']);
+        $container->setParameter('flex_model.elasticsearch.index.mappings', $config['index']['mappings']);
         $container->setParameter('flex_model.elasticsearch.hosts', $config['hosts']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

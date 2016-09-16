@@ -22,8 +22,8 @@ class FlexModelElasticsearchFactory
     public static function createElasticsearchClient(array $hosts)
     {
         $client = ClientBuilder::create()
-                        ->setHosts($hosts)
-                        ->build();
+            ->setHosts($hosts)
+            ->build();
 
         return $client;
     }
