@@ -39,11 +39,7 @@ class UpdateIndexCommand extends ContainerAwareCommand
         $indexName = $this->getContainer()->getParameter('flex_model.elasticsearch.index.name');
         $indexParameters = array('index' => $indexName);
         if ($client->indices()->exists($indexParameters) === false) {
-            $client->indices()->create($indexParameters);
-
-            $io->text(sprintf('Created index "%s".', $indexName));
-        } else {
-            $io->text(sprintf('Index "%s" already exists. Continuing...', $indexName));
+            throw new RuntimeException(sprintf('Elasticsearch index "%s" does not exist.', $indexName));
         }
 
         $classMetaDataInstances = $this->getContainer()->get('doctrine')->getManager()->getMetadataFactory()->getAllMetadata();
