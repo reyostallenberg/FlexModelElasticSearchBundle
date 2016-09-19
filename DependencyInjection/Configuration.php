@@ -22,12 +22,24 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('index')->end()
+                ->arrayNode('index')
+                    ->children()
+                        ->scalarNode('name')
+                            ->isRequired()
+                            ->end()
+                        ->variableNode('settings')
+                            ->defaultValue(array())
+                            ->end()
+                        ->variableNode('mappings')
+                            ->defaultValue(array())
+                            ->end()
+                        ->end()
+                    ->end()
                 ->arrayNode('hosts')
                     ->isRequired()
                     ->prototype('scalar')
-                ->end()
-            ->end();
+                    ->end()
+                ->end();
 
         return $treeBuilder;
     }

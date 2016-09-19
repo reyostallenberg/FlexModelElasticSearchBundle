@@ -25,13 +25,13 @@
         <service id='flex_model.elasticsearch.indexer' class='%flex_model.elasticsearch.indexer.class%'>
             <argument type='service' id='flex_model.elasticsearch.client'/>
             <argument type='service' id='flexmodel'/>
-            <argument>%flex_model.elasticsearch.index%</argument>
+            <argument>%flex_model.elasticsearch.index.name%</argument>
         </service>
 
         <service id='flex_model.elasticsearch.filtered_searcher' class='%flex_model.elasticsearch.filtered_searcher.class%'>
             <argument type='service' id='flex_model.elasticsearch.client'/>
             <argument type='service' id='flexmodel'/>
-            <argument>%flex_model.elasticsearch.index%</argument>
+            <argument>%flex_model.elasticsearch.index.name%</argument>
         </service>
 
         <service id='flex_model.elasticsearch.aggregation_result_parser' class='%flex_model.elasticsearch.aggregation_result_parser.class%'>
