@@ -114,11 +114,16 @@ class FilteredSearcher
                 if ($aggregation instanceof AbstractAggregation) {
                     $filter = new FilterAggregation($aggregation->getField());
                     $filterQuery = new BoolQuery();
-                    if ($search->getQueries() instanceof BoolQuery) {
-                        foreach ($search->getQueries()->getQueries() as $query) {
-                            $filterFieldName = current(array_keys($query->toArray()[$query->getType()]));
-                            if ($aggregation->getField() !== $filterFieldName) {
-                                $filterQuery->add($query);
+                    $boolQuery = $search->getQueries();
+                    if ($boolQuery instanceof BoolQuery) {
+                        $boolTypes = array(BoolQuery::MUST, BoolQuery::MUST_NOT, BoolQuery::SHOULD);
+                        foreach ($boolTypes as $boolType) {
+                            $queries = $boolQuery->getQueries($boolType);
+                            foreach ($queries as $query) {
+                                $filterFieldName = current(array_keys($query->toArray()[$query->getType()]));
+                                if ($aggregation->getField() !== $filterFieldName) {
+                                    $filterQuery->add($query, $boolType);
+                                }
                             }
                         }
                     }
