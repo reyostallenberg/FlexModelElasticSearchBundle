@@ -3,8 +3,10 @@
 namespace FlexModel\FlexModelElasticsearchBundle\Command;
 
 use Doctrine\ORM\EntityManager;
+use Elasticsearch\Client;
 use FlexModel\FlexModelElasticsearchBundle\Elasticsearch\Indexer;
 use FlexModel\FlexModelElasticsearchBundle\Elasticsearch\Model\IndexableObjectInterface;
+use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -35,7 +37,7 @@ class UpdateIndexCommand extends ContainerAwareCommand
         $io = new SymfonyStyle($input, $output);
 
         $client = $this->getContainer()->get('flex_model.elasticsearch.client');
-        /* @var $client \Elasticsearch\Client */
+        /* @var $client Client */
         $indexName = $this->getContainer()->getParameter('flex_model.elasticsearch.index.name');
         $indexParameters = array('index' => $indexName);
         if ($client->indices()->exists($indexParameters) === false) {
