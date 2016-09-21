@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0188e5e13fc061b754d0b968eba0c0d3",
-    "content-hash": "f45dede13c690405fafa03e41a84fc94",
+    "hash": "49de9631a7bb7d68a0ca385c7669aa38",
+    "content-hash": "fb91b6424e95aef8442be0aa71ce3c6a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -662,16 +662,16 @@
         },
         {
             "name": "flexmodel/flexmodel",
-            "version": "0.2.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FlexModel/FlexModel.git",
-                "reference": "5dd2381d0b2671ac04fca69f75617d8d996154dd"
+                "reference": "7ef02e3075a2afb56f0d4f382ee9a46ecd9b9002"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FlexModel/FlexModel/zipball/5dd2381d0b2671ac04fca69f75617d8d996154dd",
-                "reference": "5dd2381d0b2671ac04fca69f75617d8d996154dd",
+                "url": "https://api.github.com/repos/FlexModel/FlexModel/zipball/7ef02e3075a2afb56f0d4f382ee9a46ecd9b9002",
+                "reference": "7ef02e3075a2afb56f0d4f382ee9a46ecd9b9002",
                 "shasum": ""
             },
             "require": {
@@ -698,33 +698,33 @@
                 }
             ],
             "description": "An XML-based model (object / view / form) configuration library.",
-            "time": "2016-04-14 12:15:32"
+            "time": "2016-09-19 09:52:14"
         },
         {
             "name": "flexmodel/flexmodel-bundle",
-            "version": "0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FlexModel/FlexModelBundle.git",
-                "reference": "5b3aad17d5a2108bbf3bf15ea161c726433ecd3a"
+                "reference": "a679d044c3f675231af65892cec1384ead4ecc65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FlexModel/FlexModelBundle/zipball/5b3aad17d5a2108bbf3bf15ea161c726433ecd3a",
-                "reference": "5b3aad17d5a2108bbf3bf15ea161c726433ecd3a",
+                "url": "https://api.github.com/repos/FlexModel/FlexModelBundle/zipball/a679d044c3f675231af65892cec1384ead4ecc65",
+                "reference": "a679d044c3f675231af65892cec1384ead4ecc65",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.5",
                 "ext-libxml": "*",
                 "ext-xsl": "*",
-                "flexmodel/flexmodel": "^0.2.0",
+                "flexmodel/flexmodel": "^1.0",
                 "ocramius/proxy-manager": "^1.0",
                 "php": "^5.5 | ^7.0",
-                "symfony/console": "^3.0",
-                "symfony/form": "^3.0",
-                "symfony/framework-bundle": "^3.0",
-                "symfony/validator": "^3.0",
+                "symfony/console": "^2.8 | ^3.0",
+                "symfony/form": "^2.8 | ^3.0",
+                "symfony/framework-bundle": "^2.8 | ^3.0",
+                "symfony/validator": "^2.8 | ^3.0",
                 "twig/twig": "^1.24"
             },
             "require-dev": {
@@ -750,7 +750,7 @@
                 }
             ],
             "description": "FlexModel integration for Symfony 3+.",
-            "time": "2016-05-11 09:15:45"
+            "time": "2016-09-21 08:10:02"
         },
         {
             "name": "guzzlehttp/ringphp",
