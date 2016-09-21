@@ -74,11 +74,14 @@ class BuildIndexCommand extends ContainerAwareCommand
     {
         $parameters = array(
             'index' => $indexName,
-            'body' => array(
-                'settings' => $this->getContainer()
-                    ->getParameter('flex_model.elasticsearch.index.settings'),
-            ),
+            'body' => array(),
         );
+
+        $indexSettings = $this->getContainer()
+            ->getParameter('flex_model.elasticsearch.index.settings');
+        if (empty($indexSettings) === false) {
+            $parameters['body']['settings'] = $indexSettings;
+        }
 
         $indexMappings = array();
 
