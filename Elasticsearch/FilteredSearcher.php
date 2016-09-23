@@ -4,10 +4,12 @@ namespace FlexModel\FlexModelElasticsearchBundle\Elasticsearch;
 
 use Elasticsearch\Client;
 use FlexModel\FlexModel;
+use Nijens\Range\Range;
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\FilterAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\FiltersAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\GlobalAggregation;
+use ONGR\ElasticsearchDSL\Aggregation\RangeAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\TermsAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\ValueCountAggregation;
 use ONGR\ElasticsearchDSL\Query\BoolQuery;
@@ -103,6 +105,17 @@ class FilteredSearcher
                         $aggregation->addFilter(new TermQuery($fieldConfiguration['name'], false), 'false');
                         $aggregation->addAggregation(new ValueCountAggregation($fieldConfiguration['name'], $fieldConfiguration['name']));
                         break;
+                    case 'INTEGER':
+                        if (isset($formFieldConfiguration['options'])) {
+                            $aggregation = new RangeAggregation($fieldConfiguration['name'], $fieldConfiguration['name']);
+                            $aggregation->setKeyed(true);
+                            foreach ($formFieldConfiguration['options'] as $option) {
+                                $range = Range::parse($option['value']);
+
+                                $aggregation->addRange($range->getFrom(), $range->getTo(), $option['value']);
+                            }
+                        }
+                        break;
                     case 'SET':
                     case 'VARCHAR':
                         if (isset($fieldConfiguration['options'])) {
@@ -114,11 +127,16 @@ class FilteredSearcher
                 if ($aggregation instanceof AbstractAggregation) {
                     $filter = new FilterAggregation($aggregation->getField());
                     $filterQuery = new BoolQuery();
-                    if ($search->getQueries() instanceof BoolQuery) {
-                        foreach ($search->getQueries()->getQueries() as $query) {
-                            $filterFieldName = current(array_keys($query->toArray()[$query->getType()]));
-                            if ($aggregation->getField() !== $filterFieldName) {
-                                $filterQuery->add($query);
+                    $boolQuery = $search->getQueries();
+                    if ($boolQuery instanceof BoolQuery) {
+                        $boolTypes = array(BoolQuery::MUST, BoolQuery::MUST_NOT, BoolQuery::SHOULD);
+                        foreach ($boolTypes as $boolType) {
+                            $queries = $boolQuery->getQueries($boolType);
+                            foreach ($queries as $query) {
+                                $filterFieldName = current(array_keys($query->toArray()[$query->getType()]));
+                                if ($aggregation->getField() !== $filterFieldName) {
+                                    $filterQuery->add($query, $boolType);
+                                }
                             }
                         }
                     }

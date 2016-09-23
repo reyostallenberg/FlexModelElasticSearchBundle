@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "49de9631a7bb7d68a0ca385c7669aa38",
-    "content-hash": "fb91b6424e95aef8442be0aa71ce3c6a",
+    "hash": "9a3e18982cd90353234d76920acf4a68",
+    "content-hash": "cf35a9bebb32c9fc8c9a1f20e63090cd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -852,6 +852,51 @@
                 "stream"
             ],
             "time": "2014-10-12 19:18:40"
+        },
+        {
+            "name": "nijens/range",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nijens/range.git",
+                "reference": "1e6a8d35fceb522d94c4e4c3178f29e835d4c64d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nijens/range/zipball/1e6a8d35fceb522d94c4e4c3178f29e835d4c64d",
+                "reference": "1e6a8d35fceb522d94c4e4c3178f29e835d4c64d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nijens\\Range\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Niels Nijens",
+                    "email": "nijens.niels@gmail.com"
+                }
+            ],
+            "description": "Ruby range syntax parser for PHP.",
+            "keywords": [
+                "range",
+                "ruby",
+                "yaml"
+            ],
+            "time": "2016-09-21 14:34:46"
         },
         {
             "name": "ocramius/proxy-manager",

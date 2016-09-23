@@ -78,13 +78,16 @@ class AggregationResultParser
                     'doc_count' => 0,
                 );
 
-                foreach ($bucket as $bucketItem) {
-                    if ($bucketItem['key'] === $option['value']) {
+                foreach ($bucket as $value => $bucketItem) {
+                    if (isset($bucketItem['key'])) {
+                        $value = $bucketItem['key'];
+                    }
+                    if ($value === $option['value']) {
                         $updatedBucketItem = $bucketItem;
                     }
                 }
 
-                $updatedBucket[] = $updatedBucketItem;
+                $updatedBucket[$option['value']] = $updatedBucketItem;
             }
 
             $bucket = $updatedBucket;
