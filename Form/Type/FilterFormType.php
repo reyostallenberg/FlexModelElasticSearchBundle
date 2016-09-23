@@ -48,9 +48,14 @@ class FilterFormType extends AbstractType
                 foreach ($formConfiguration['fields'] as $formFieldConfiguration) {
                     $fieldConfiguration = $this->flexModel->getField($objectName, $formFieldConfiguration['name']);
 
+                    $label = $fieldConfiguration['label'];
+                    if (isset($formFieldConfiguration['label'])) {
+                        $label = $formFieldConfiguration['label'];
+                    }
+
                     $fieldType = ChoiceType::class;
                     $fieldOptions = array(
-                        'label' => $fieldConfiguration['label'],
+                        'label' => $label,
                         'required' => false,
                     );
 
