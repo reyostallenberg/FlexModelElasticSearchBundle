@@ -132,9 +132,8 @@ class FilteredSearcher
                         $boolTypes = array(BoolQuery::MUST, BoolQuery::MUST_NOT, BoolQuery::SHOULD);
                         foreach ($boolTypes as $boolType) {
                             $queries = $boolQuery->getQueries($boolType);
-                            foreach ($queries as $query) {
-                                $filterFieldName = current(array_keys($query->toArray()[$query->getType()]));
-                                if ($aggregation->getField() !== $filterFieldName) {
+                            foreach ($queries as $key => $query) {
+                                if ($aggregation->getField() !== $key) {
                                     $filterQuery->add($query, $boolType);
                                 }
                             }
